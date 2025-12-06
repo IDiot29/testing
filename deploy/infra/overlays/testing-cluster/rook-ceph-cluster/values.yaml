@@ -4,6 +4,8 @@ monitoring:
   enabled: false
 pspEnable: false
 cephClusterSpec:
+  mgr:
+    count: 1
   mon:
     count: 1
     allowMultiplePerNode: true
