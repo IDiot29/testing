@@ -5,6 +5,9 @@ metadata:
   namespace: rook-ceph
 spec:
   interval: 10m
+  dependsOn:
+  - name: rook-ceph-operator
+    namespace: rook-ceph
   releaseName: rook-ceph-cluster
   targetNamespace: rook-ceph
   chart:
