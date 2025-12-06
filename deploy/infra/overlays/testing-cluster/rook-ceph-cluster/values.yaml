@@ -1,7 +1,7 @@
 toolbox:
   enabled: true
 monitoring:
-  enabled: true
+  enabled: false
 pspEnable: false
 cephClusterSpec:
   mon:
