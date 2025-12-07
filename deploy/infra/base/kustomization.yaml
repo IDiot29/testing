@@ -5,4 +5,5 @@ resources:
   - ./sources
   - ./rook-ceph-operator
   - ./rook-ceph-cluster
+  - ./cnpg-operator
   - ./cnpg
