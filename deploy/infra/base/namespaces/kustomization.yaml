@@ -5,5 +5,6 @@ resources:
   - ./cnpg-system/namespace.yaml
   - ./cnpg/namespace.yaml
   - ./harbor/namespace.yaml
+  - ./metallb-system/namespace.yaml
   #- ./cloudflared/namespace.yaml
   - ./kgateway-system/namespace.yaml
