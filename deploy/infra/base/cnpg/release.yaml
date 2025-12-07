@@ -9,11 +9,11 @@ spec:
   targetNamespace: database
   chart:
     spec:
-      chart: rook-ceph-cluster
-      version: v1.18.8
+      chart: cnpg
+      version: 0.4.0
       sourceRef:
         kind: HelmRepository
-        name: rook-ceph
+        name: cnpg
         namespace: flux-system
   install:
     remediation:
