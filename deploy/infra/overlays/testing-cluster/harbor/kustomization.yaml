@@ -8,7 +8,7 @@ configMapGenerator:
 generatorOptions:
   disableNameSuffixHash: true
 resources:
-  - ../../base/harbor
-  - values-secret.yaml
+  - ../../../base/harbor
+  - secret.yaml
 patches:
   - path: ./helmrelease-patch.yaml
