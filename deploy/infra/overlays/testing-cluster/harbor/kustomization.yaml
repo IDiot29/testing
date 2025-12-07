@@ -1,9 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: harbor
 configMapGenerator:
-- name: harbor-values
-  namespace: harbor
-  files:
-  - values.yaml=./values.yaml
+  - name: harbor-values
+    files:
+      - values.yaml
 generatorOptions:
   disableNameSuffixHash: true
+resources:
+  - ../../base/harbor
+  - values-secret.yaml
+patches:
+  - path: ./helmrelease-patch.yaml

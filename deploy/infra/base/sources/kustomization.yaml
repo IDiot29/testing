@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - ./rook-ceph/repository.yaml
   - ./cnpg/repository.yaml
-#- ./harbor/repository.yaml
+  - ./harbor/repository.yaml

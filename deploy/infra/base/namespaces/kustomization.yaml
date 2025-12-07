@@ -4,4 +4,4 @@ resources:
   - ./rook-ceph/namespace.yaml
   - ./cnpg-system/namespace.yaml
   - ./cnpg/namespace.yaml
-#- ./harbor/namespace.yaml
+  - ./harbor/namespace.yaml

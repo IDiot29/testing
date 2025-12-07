@@ -1,0 +1,23 @@
+externalURL: http://harbor.harbor.svc.cluster.local
+
+expose:
+  type: clusterIP
+  tls:
+    enabled: false
+
+database:
+  type: external
+  external:
+    host: cluster-rw.database.svc.cluster.local
+    port: 5432
+    username: postgres
+    existingSecret: harbor-database
+    sslmode: disable
+
+redis:
+  type: internal
+
+persistence:
+  persistentVolumeClaim:
+    registry:
+      size: 150Gi
