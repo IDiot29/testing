@@ -1,0 +1,12 @@
+# Node artifacts
+apps/nodejs-app/node_modules/
+apps/nodejs-app/npm-debug.log*
+
+# Go build outputs
+apps/go-app/go-app
+apps/go-app/bin/
+
+# Common ignores
+.DS_Store
+.env
+.env.*.local
