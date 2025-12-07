@@ -5,3 +5,5 @@ resources:
   - ../../../base/metallb
 patches:
   - path: helmrelease-patch.yaml
+  - path: ipaddresspool.yaml
+  - path: l2advertisement.yaml
