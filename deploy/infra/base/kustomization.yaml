@@ -13,4 +13,3 @@ resources:
   - ./metallb
   - ./kgateway-crds
   - ./kgateway
-  - ./metallb
