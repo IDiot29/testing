@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: metallb-system
 resources:
   - ../../../base/metallb
+  - ipaddresspool.yaml
+  - l2advertisement.yaml
 patches:
   - path: helmrelease-patch.yaml
-  - path: ipaddresspool.yaml
-  - path: l2advertisement.yaml
