@@ -7,7 +7,7 @@ spec:
   gatewayClassName: kgateway
   addresses:
     - type: IPAddress
-      value: 192.0.2.240
+      value: 10.200.250.200
   listeners:
     - name: http
       protocol: HTTP

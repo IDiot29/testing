@@ -1,0 +1,15 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: metallb
+  namespace: metallb-system
+spec:
+  values:
+    addressPools:
+      - name: default-pool
+        protocol: layer2
+        addresses:
+          - 10.200.250.200-10.200.250.200
+    l2Advertisements:
+      - ipAddressPools:
+          - default-pool
