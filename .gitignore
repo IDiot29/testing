@@ -8,5 +8,11 @@ apps/go-app/bin/
 
 # Common ignores
 .DS_Store
+.vscode/
+.idea/
 .env
 .env.*.local
+
+# SOPS/age artifacts
+*.agekey
+.sops.tmp

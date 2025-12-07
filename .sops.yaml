@@ -1,0 +1,7 @@
+# SOPS configuration for Kubernetes manifests.
+# Replace the age recipient below with your actual public key (age1...).
+---
+creation_rules:
+  - path_regex: .*.yaml
+    encrypted_regex: "^(data|stringData)$"
+    age: age156xfc5w7nfn7ls24mg82gmjr7vzefpfvdsnxcfync7qfkpwxzals530asy
