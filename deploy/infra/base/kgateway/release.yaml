@@ -11,7 +11,7 @@ spec:
     spec:
       chart: kgateway
       sourceRef:
-        kind: OCIRepository
+        kind: HelmRepository
         name: kgateway
         namespace: flux-system
       version: v2.1.1
