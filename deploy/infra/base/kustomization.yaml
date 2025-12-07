@@ -9,3 +9,8 @@ resources:
   - ./cnpg
   - ./harbor
   - ./gateway-api
+  #- ./cloudflared
+  - ./metallb
+  - ./kgateway-crds
+  - ./kgateway
+  - ./metallb

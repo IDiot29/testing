@@ -1,0 +1,17 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: edge-gateway
+spec:
+  gatewayClassName: kgateway
+  addresses:
+    - type: IPAddress
+      value: 192.0.2.240
+  listeners:
+    - name: http
+      port: 80
+      protocol: HTTP
+      hostname: "*"
+      allowedRoutes:
+        namespaces:
+          from: All

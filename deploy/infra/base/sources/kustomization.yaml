@@ -4,3 +4,6 @@ resources:
   - ./rook-ceph/repository.yaml
   - ./cnpg/repository.yaml
   - ./harbor/repository.yaml
+  - ./metallb/repository.yaml
+  - ./kgateway-crds/repository.yaml
+  - ./kgateway/repository.yaml
