@@ -5,11 +5,11 @@ metadata:
   namespace: database
 spec:
   interval: 10m
-  releaseName: cnpg
+  releaseName: cluster
   targetNamespace: database
   chart:
     spec:
-      chart: cnpg
+      chart: cluster
       version: 0.4.0
       sourceRef:
         kind: HelmRepository

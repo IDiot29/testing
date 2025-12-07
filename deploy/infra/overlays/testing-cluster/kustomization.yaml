@@ -4,6 +4,10 @@ resources:
   - ../../base
 #  - harbor
 configMapGenerator:
+- name: cnpg-values
+  namespace: database
+  files:
+  - values.yaml=./cnpg/values.yaml
 - name: rook-ceph-cluster-values
   namespace: rook-ceph
   files:
@@ -11,5 +15,6 @@ configMapGenerator:
 generatorOptions:
   disableNameSuffixHash: true
 patches:
+- path: ./cnpg/helmrelease-patch.yaml
 - path: ./rook-ceph-operator/helmrelease-patch.yaml
 - path: ./rook-ceph-cluster/helmrelease-patch.yaml

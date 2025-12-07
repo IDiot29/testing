@@ -1,0 +1,4 @@
+cluster:
+  storage:
+    storageClass: rook-ceph-block
+    size: 100Gi
