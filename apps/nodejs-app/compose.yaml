@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  nodejs-app:
+    build:
+      context: ./nodejs-app
+      dockerfile: Containerfile
+    ports:
+      - "3001:3000"
+    environment:
+      - PORT=3000
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318/v1/traces
+    depends_on:
+      - otel-collector
