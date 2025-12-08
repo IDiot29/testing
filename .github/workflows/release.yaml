@@ -59,6 +59,11 @@ jobs:
             --tag "${image}:latest" \
             --push \
             "${context}"
+      - name: Switch to master for manifest update
+        run: |
+          git fetch origin master
+          git checkout master
+          git reset --hard origin/master
       - name: Update deployment image tag
         run: |
           app="${{ steps.vars.outputs.app }}"
@@ -88,4 +93,4 @@ jobs:
           git config user.email "github-actions@users.noreply.github.com"
           git add deploy/apps/${app}/deployment.yaml
           git commit -m "chore(${app}): bump image to ${version}"
-          git push
+          git push origin HEAD:master
