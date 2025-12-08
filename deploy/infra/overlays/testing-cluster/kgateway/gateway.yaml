@@ -16,3 +16,10 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+    - name: tls
+      protocol: TLS
+      port: 443
+      hostname: ceph.oryzasa.site
+      allowedRoutes:
+        namespaces:
+          from: All

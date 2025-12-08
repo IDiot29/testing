@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../../../base/rook-ceph-cluster
   - httproute.yaml
+  - tlsroute-dashboard.yaml
 configMapGenerator:
   - name: rook-ceph-cluster-values
     namespace: rook-ceph
