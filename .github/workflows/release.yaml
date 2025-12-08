@@ -70,7 +70,7 @@ jobs:
           fi
           image="${REGISTRY}/${IMAGE_OWNER}/${app}:${version}"
           # Update the image field in the deployment
-          python3 - <<'PY'
+          python3 - "${deploy_file}" "${image}" <<'PY'
           import yaml, sys, pathlib
           deploy_file = pathlib.Path(sys.argv[1])
           image = sys.argv[2]
@@ -80,7 +80,6 @@ jobs:
               c["image"] = image
           deploy_file.write_text(yaml.safe_dump(doc, sort_keys=False))
           PY
-          "${deploy_file}" "${image}"
       - name: Commit and push deployment tag update
         run: |
           app="${{ steps.vars.outputs.app }}"
