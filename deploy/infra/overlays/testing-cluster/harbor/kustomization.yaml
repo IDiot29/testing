@@ -10,5 +10,6 @@ generatorOptions:
 resources:
   - ../../../base/harbor
   - secret.yaml
+  - httproute.yaml
 patches:
   - path: ./helmrelease-patch.yaml
