@@ -13,3 +13,6 @@ spec:
         kind: HelmRepository
         name: harbor
         namespace: flux-system
+  values:
+    existingSecretAdminPassword: harbor-admin-secret
+    existingSecretAdminPasswordKey: HARBOR_ADMIN_PASSWORD
