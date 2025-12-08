@@ -1,0 +1,6 @@
+tunnel: cfx-tunnel
+credentials-file: /etc/cloudflared/creds/credentials.json
+ingress:
+  - hostname: "*.oryzasa.site"
+    service: http://edge-gateway.kgateway-system.svc.cluster.local:80
+  - service: http_status:404
