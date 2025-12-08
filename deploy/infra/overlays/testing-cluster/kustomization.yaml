@@ -13,3 +13,5 @@ resources:
   - ./metallb
   - ./kgateway-crds
   - ./kgateway
+  - ../../base/reflector
+  - ../../base/ghcr-pullsecret

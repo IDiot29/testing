@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - flux-system
 - ../../infra/overlays/testing-cluster
+- ../../apps/overlays/testing-cluster
