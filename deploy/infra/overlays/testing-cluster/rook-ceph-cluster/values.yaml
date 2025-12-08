@@ -20,6 +20,7 @@ cephClusterSpec:
           effect: NoSchedule
   dashboard:
     enabled: true
+    ssl: false
   storage:
     useAllNodes: true
     useAllDevices: false
