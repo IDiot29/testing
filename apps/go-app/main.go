@@ -45,12 +45,16 @@ func main() {
 	mux.HandleFunc("/", traceHandler("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "hey i am go app")
 	}))
-	mux.HandleFunc("/health", traceHandler("/health", func(w http.ResponseWriter, r *http.Request) {
+	health := func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte(`{"status":"ok"}`))
-	}))
+	}
+	mux.HandleFunc("/health", traceHandler("/health", health))
+	mux.HandleFunc("/health/", traceHandler("/health", health))
+
 	mux.Handle("/metrics", promhttp.Handler())
+	mux.Handle("/metrics/", promhttp.Handler())
 
 	addr := ":3000"
 	if port := os.Getenv("PORT"); port != "" {
