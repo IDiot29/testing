@@ -1,4 +1,4 @@
-externalURL: https://harbor.oryzasa.site
+externalURL: http://harbor
 
 expose:
   type: clusterIP
