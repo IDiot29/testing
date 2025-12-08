@@ -8,3 +8,5 @@ configMapGenerator:
   - name: kube-prometheus-values
     files:
       - values.yaml
+    options:
+      disableNameSuffixHash: true
