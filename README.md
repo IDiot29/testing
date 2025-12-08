@@ -14,6 +14,7 @@ yes, i use master branch not main :v (just because that tech drama went viral)
   on 3000.
 - Secrets: SOPS+age (`testing.agekey`, `.sops.yaml`). GHCR pull secrets are
   committed encrypted and applied by Flux.
+- Cluster: k3s single node (control plane + worker).
 
 ## CI/CD (what happens on push/tag)
 
