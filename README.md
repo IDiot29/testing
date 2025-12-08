@@ -34,6 +34,8 @@ yes, i use master branch not main :v (just because that tech drama went viral)
   kgateway + cloudflared.
 - Harbor: `https://harbor.oryzasa.site` (still temperamental behind Cloudflare).
 - Rook dashboard: via HTTPRoute, TLS disabled per current cluster setup.
+- Monitoring/Grafana: `https://grafana.oryzasa.site` (currently stuck in login
+  redirect loops behind Cloudflare; cookies don’t stick).
 
 ## Run locally with podman
 
@@ -52,6 +54,7 @@ yes, i use master branch not main :v (just because that tech drama went viral)
 - Harbor: CF proxy/auth is shaky; pushing to Harbor may fail—use GHCR for now.
 - Tracing: set `OTEL_EXPORTER_OTLP_ENDPOINT` to a clean URL (e.g.,
   `http://otel-collector:4318`) to stop noisy errors.
+- Grafana: Cloudflare/KGateway causes login redirects (cookies not sticky).
 
 ## GitOps loop
 
