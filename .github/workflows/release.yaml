@@ -1,0 +1,92 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "go-app-*"
+      - "nodejs-app-*"
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      REGISTRY: ghcr.io
+      IMAGE_OWNER: idiot29
+      SHORT_SHA: ${{ github.sha }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Derive app and version
+        id: vars
+        run: |
+          ref="${GITHUB_REF_NAME}"
+          if [[ "$ref" == go-app-* ]]; then
+            app="go-app"
+          elif [[ "$ref" == nodejs-app-* ]]; then
+            app="nodejs-app"
+          else
+            echo "Unsupported tag $ref" >&2
+            exit 1
+          fi
+          version="${ref#${app}-}"
+          echo "app=$app" >> $GITHUB_OUTPUT
+          echo "version=$version" >> $GITHUB_OUTPUT
+      - name: Build and push image
+        run: |
+          app="${{ steps.vars.outputs.app }}"
+          version="${{ steps.vars.outputs.version }}"
+          context="apps/${app}"
+          image="${REGISTRY}/${IMAGE_OWNER}/${app}"
+          short_sha="${SHORT_SHA:0:7}"
+          docker buildx build \
+            --file "apps/${app}/Containerfile" \
+            --tag "${image}:${version}" \
+            --tag "${image}:${short_sha}" \
+            --tag "${image}:latest" \
+            --push \
+            "${context}"
+      - name: Update deployment image tag
+        run: |
+          app="${{ steps.vars.outputs.app }}"
+          version="${{ steps.vars.outputs.version }}"
+          deploy_file="deploy/apps/${app}/deployment.yaml"
+          if [[ ! -f "${deploy_file}" ]]; then
+            echo "Deploy file ${deploy_file} not found" >&2
+            exit 1
+          fi
+          image="${REGISTRY}/${IMAGE_OWNER}/${app}:${version}"
+          # Update the image field in the deployment
+          python3 - <<'PY'
+          import yaml, sys, pathlib
+          deploy_file = pathlib.Path(sys.argv[1])
+          image = sys.argv[2]
+          doc = yaml.safe_load(deploy_file.read_text())
+          containers = doc["spec"]["template"]["spec"]["containers"]
+          for c in containers:
+              c["image"] = image
+          deploy_file.write_text(yaml.safe_dump(doc, sort_keys=False))
+          PY
+          "${deploy_file}" "${image}"
+      - name: Commit and push deployment tag update
+        run: |
+          app="${{ steps.vars.outputs.app }}"
+          version="${{ steps.vars.outputs.version }}"
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add deploy/apps/${app}/deployment.yaml
+          git commit -m "chore(${app}): bump image to ${version}"
+          git push
