@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reflector
+  namespace: kube-system
+  labels:
+    app: reflector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reflector
+  template:
+    metadata:
+      labels:
+        app: reflector
+    spec:
+      serviceAccountName: reflector
+      containers:
+        - name: reflector
+          image: ghcr.io/emberstack/kubernetes-reflector:7.1.271
+          args:
+            - --namespaces=*
+            - --types=secrets
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: reflector
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: reflector
+rules:
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "list", "watch", "create", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: reflector
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: reflector
+subjects:
+  - kind: ServiceAccount
+    name: reflector
+    namespace: kube-system
