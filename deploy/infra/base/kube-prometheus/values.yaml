@@ -80,7 +80,9 @@ grafana:
       root_url: https://grafana.oryzasa.site/
       serve_from_sub_path: false
     security:
-      cookie_secure: true
+      # Behind Cloudflare/KGateway; allow cookies even if TLS is terminated upstream
+      cookie_secure: false
+      cookie_samesite: none
       allow_embedding: false
 
 # Disable extra rules
