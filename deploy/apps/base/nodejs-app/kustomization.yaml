@@ -4,3 +4,4 @@ namespace: nodejs-app
 resources:
   - ../../nodejs-app/deployment.yaml
   - ../../nodejs-app/httproute.yaml
+  - ../../nodejs-app/service.yaml

@@ -4,3 +4,4 @@ namespace: go-app
 resources:
   - ../../go-app/deployment.yaml
   - ../../go-app/httproute.yaml
+  - ../../go-app/service.yaml
