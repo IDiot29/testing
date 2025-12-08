@@ -14,7 +14,7 @@ spec:
         app: go-app
     spec:
       containers:
-        - name: go-app
-          image: ghcr.io/idiot29/go-app:0.0.2rc
-          ports:
-            - containerPort: 3000
+      - name: go-app
+        image: ghcr.io/idiot29/go-app:1.0.0
+        ports:
+        - containerPort: 3000
