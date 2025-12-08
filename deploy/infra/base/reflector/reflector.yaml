@@ -18,7 +18,7 @@ spec:
       serviceAccountName: reflector
       containers:
         - name: reflector
-          image: ghcr.io/emberstack/kubernetes-reflector:7.1.271
+          image: docker.io/emberstack/kubernetes-reflector:latest
           args:
             - --namespaces=*
             - --types=secrets
@@ -42,7 +42,7 @@ metadata:
   name: reflector
 rules:
   - apiGroups: [""]
-    resources: ["secrets"]
+    resources: ["secrets", "configmaps", "namespaces"]
     verbs: ["get", "list", "watch", "create", "update", "patch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
