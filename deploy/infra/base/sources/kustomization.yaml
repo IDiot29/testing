@@ -7,3 +7,4 @@ resources:
   - ./metallb/repository.yaml
   - ./kgateway-crds/repository.yaml
   - ./kgateway/repository.yaml
+  - ./prometheus/repository.yaml

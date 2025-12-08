@@ -1,0 +1,83 @@
+# Minimal kube-prometheus-stack values
+kubeProxy:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeControllerManager:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubelet:
+  enabled: false
+kubeStateMetrics:
+  enabled: true
+nodeExporter:
+  enabled: true
+
+prometheus:
+  serviceMonitorSelectorNilUsesHelmValues: false
+  podMonitorSelectorNilUsesHelmValues: false
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 1
+      memory: 2Gi
+  retention: 7d
+  retentionSize: 150GB
+  storageSpec:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: rook-ceph-block
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 150Gi
+  ruleFiles: {}
+  prometheusSpec:
+    enableAdminAPI: false
+    alerting: []
+    ruleSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+
+alertmanager:
+  enabled: false
+
+prometheusOperator:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+kubeApiServer:
+  enabled: true
+kubeDns:
+  enabled: true
+
+coreDns:
+  enabled: true
+
+# Grafana settings
+additionalServiceMonitors: []
+grafana:
+  enabled: true
+  service:
+    type: ClusterIP
+  persistence:
+    enabled: true
+    storageClassName: rook-ceph-block
+    size: 20Gi
+  adminPassword: admin
+  defaultDashboardsEnabled: true
+
+# Disable extra rules
+defaultRules:
+  create: false
+
+# Disable alertmanager rules
+alertmanagerFiles: {}

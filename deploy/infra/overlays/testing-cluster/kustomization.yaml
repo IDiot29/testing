@@ -13,5 +13,6 @@ resources:
   - ./metallb
   - ./kgateway-crds
   - ./kgateway
+  - ./kube-prometheus
   - ../../base/reflector
   - ../../base/ghcr-pullsecret
