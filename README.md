@@ -1,6 +1,6 @@
 yes, i use master branch not main :v (just because that tech drama went viral)
 
-# CFX GitOps guide
+# Testing GitOps guide
 
 ## Repo layout (what lives where)
 
@@ -39,7 +39,8 @@ yes, i use master branch not main :v (just because that tech drama went viral)
 
 ## Run locally with podman
 
-- From repo root: `cd apps && podman compose -f compose.yaml up -d` (shared otel collector).
+- From repo root: `cd apps && podman compose -f compose.yaml up -d` (shared otel
+  collector).
 - Per app:
   - `cd apps/go-app && podman compose -f compose.yaml up -d --build`
   - `cd apps/nodejs-app && podman compose -f compose.yaml up -d --build`
