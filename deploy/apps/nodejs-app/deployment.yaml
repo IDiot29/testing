@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: ghcr.io/idiot29/nodejs-app:1.0.0
+        image: ghcr.io/idiot29/nodejs-app:1.0.1
         ports:
         - containerPort: 3000
