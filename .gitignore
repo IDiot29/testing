@@ -1,0 +1,6 @@
+secrets.yaml.dec
+*.dec
+.home-cache/
+result
+age-key.txt
+keys.txt
